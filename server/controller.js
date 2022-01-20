@@ -34,7 +34,7 @@ module.exports = {
         let {apptId} = req.body
     
         sequelize.query(`UPDATE cc_appointments SET approved=true
-        WHERE appt_id=${apptId}
+        WHERE appt_id=${apptId};
         
         insert into cc_emp_appts (emp_id, appt_id)
         values (${nextEmp}, ${apptId}),
@@ -82,9 +82,9 @@ module.exports = {
     },
 
     completeAppointment: (req,res)=>{
-        let {appId} = req.body
+        let {apptId} = req.body
         sequelize.query(`UPDATE cc_appointments SET completed=true
-        WHERE appt_id=${appId}`)
+        WHERE appt_id=${apptId}`)
         .then((dbRes=>{
             res.status(200).send(dbRes[0])
         }))
